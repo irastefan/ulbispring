@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: ulbispring
+  datasource:
+    url: jdbc:postgresql://localhost:5446/ulbidb
+    username: admin
+    password: admin
