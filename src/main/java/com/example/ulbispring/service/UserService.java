@@ -1,6 +1,7 @@
 package com.example.ulbispring.service;
 
 import com.example.ulbispring.entity.UserEntity;
+import com.example.ulbispring.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +22,11 @@ public class UserService {
         return useRepo.save(user);
     }
 
-    public UserEntity getUserById(Long id) throws UserNotFoundException {
+    public User getUserById(Long id) throws UserNotFoundException {
         UserEntity user = useRepo.findById(id).get();
         if (user == null) {
             throw new UserNotFoundException("User not found");
         }
-        return user;
+        return User.toModel(user);
     }
 }
