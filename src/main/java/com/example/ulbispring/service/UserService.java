@@ -4,7 +4,8 @@ import com.example.ulbispring.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.ulbispring.exception.UserAlreadyExists;
+import com.example.ulbispring.exception.UserAlreadyExistsException;
+import com.example.ulbispring.exception.UserNotFoundException;
 import com.example.ulbispring.repository.UseRepository;
 
 @Service
@@ -13,10 +14,18 @@ public class UserService {
     @Autowired
     private UseRepository useRepo;
 
-    public UserEntity registration(UserEntity user) throws UserAlreadyExists {
+    public UserEntity registration(UserEntity user) throws UserAlreadyExistsException {
         if (useRepo.findByUsername(user.getUsername()) != null) {
-            throw new UserAlreadyExists("User already exists");
+            throw new UserAlreadyExistsException("User already exists");
         }
         return useRepo.save(user);
+    }
+
+    public UserEntity getUserById(Long id) throws UserNotFoundException {
+        UserEntity user = useRepo.findById(id).get();
+        if (user == null) {
+            throw new UserNotFoundException("User not found");
+        }
+        return user;
     }
 }

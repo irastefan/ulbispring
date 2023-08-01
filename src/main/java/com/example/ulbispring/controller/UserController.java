@@ -1,8 +1,8 @@
 package com.example.ulbispring.controller;
 
 import com.example.ulbispring.entity.UserEntity;
-import com.example.ulbispring.exception.UserAlreadyExists;
-import com.example.ulbispring.repository.UseRepository;
+import com.example.ulbispring.exception.UserAlreadyExistsException;
+import com.example.ulbispring.exception.UserNotFoundException;
 import com.example.ulbispring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ public class UserController {
         try {
             userService.registration(user);
             return ResponseEntity.ok("User is created");
-        } catch (UserAlreadyExists e) {
+        } catch (UserAlreadyExistsException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error in creating user");
@@ -32,6 +32,17 @@ public class UserController {
         try {
             //return ResponseEntity.ok(useRepo.findAll());
             return ResponseEntity.ok("Users");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity getUserById(@RequestParam Long id) {
+        try {
+            return ResponseEntity.ok(userService.getUserById(id));
+        } catch (UserNotFoundException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error");
         }
