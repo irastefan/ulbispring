@@ -22,6 +22,10 @@ public class UserService {
         return useRepo.save(user);
     }
 
+    public Iterable<UserEntity> getAllUsers() {
+        return useRepo.findAll();
+    }
+
     public User getUserById(Long id) throws UserNotFoundException {
         UserEntity user = useRepo.findById(id).get();
         if (user == null) {

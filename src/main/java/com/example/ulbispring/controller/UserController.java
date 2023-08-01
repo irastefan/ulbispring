@@ -30,8 +30,7 @@ public class UserController {
     @GetMapping("/")
     public ResponseEntity getUsers() {
         try {
-            //return ResponseEntity.ok(useRepo.findAll());
-            return ResponseEntity.ok("Users");
+            return ResponseEntity.ok(userService.getAllUsers());
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error");
         }
