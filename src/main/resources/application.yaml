@@ -5,3 +5,7 @@ spring:
     url: jdbc:postgresql://localhost:5446/ulbidb
     username: admin
     password: admin
+
+  jpa:
+    hibernate:
+      ddl-auto: update
