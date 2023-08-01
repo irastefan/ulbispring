@@ -30,4 +30,13 @@ public class TodoController {
             return ResponseEntity.badRequest().body("Couldn't complete todo");
         }
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteTodoById(@PathVariable Long id) {
+        try {
+            return ResponseEntity.ok(TodoService.deleteTodoById(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Couldn't delete this todo");
+        }
+    }
 }
