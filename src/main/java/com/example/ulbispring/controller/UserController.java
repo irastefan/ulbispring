@@ -23,7 +23,7 @@ public class UserController {
         } catch (UserAlreadyExistsException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error in creating user");
+            return ResponseEntity.badRequest().body("Couldn't create user");
         }
     }
 
@@ -32,7 +32,7 @@ public class UserController {
         try {
             return ResponseEntity.ok(userService.getAllUsers());
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error");
+            return ResponseEntity.badRequest().body("Couldn't find any user");
         }
     }
 
@@ -43,7 +43,7 @@ public class UserController {
         } catch (UserNotFoundException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error");
+            return ResponseEntity.badRequest().body("Couldn't find this user");
         }
     }
 
@@ -52,7 +52,7 @@ public class UserController {
         try {
             return ResponseEntity.ok(userService.deleteUserById(id));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error");
+            return ResponseEntity.badRequest().body("Couldn't delete this user");
         }
     }
 }

@@ -18,7 +18,7 @@ public class TodoController {
         try {
             return ResponseEntity.ok(TodoService.createTodo(todo, userId));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error in creating todo");
+            return ResponseEntity.badRequest().body("Couldn't create todo");
         }
     }
 
@@ -27,7 +27,7 @@ public class TodoController {
         try {
             return ResponseEntity.ok(TodoService.completeTodo(todoId));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error in completing todo");
+            return ResponseEntity.badRequest().body("Couldn't complete todo");
         }
     }
 }
