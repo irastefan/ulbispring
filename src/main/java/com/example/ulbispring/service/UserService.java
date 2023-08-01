@@ -29,4 +29,13 @@ public class UserService {
         }
         return User.toModel(user);
     }
+
+    public User deleteUserById(Long id) throws UserNotFoundException {
+        UserEntity user = useRepo.findById(id).get();
+        if (user == null) {
+            throw new UserNotFoundException("User not found");
+        }
+        useRepo.deleteById(id);
+        return User.toModel(user);
+    }
 }
