@@ -2,6 +2,8 @@ package com.example.ulbispring.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class UserEntity {
     @Id
@@ -9,6 +11,9 @@ public class UserEntity {
     private Long id;
     private String username;
     private String password;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<TodoEntity> todos;
 
     public UserEntity() {
     }
@@ -35,5 +40,13 @@ public class UserEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<TodoEntity> getTodos() {
+        return todos;
+    }
+
+    public void setTodos(List<TodoEntity> todos) {
+        this.todos = todos;
     }
 }

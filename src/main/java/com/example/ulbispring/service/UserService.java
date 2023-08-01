@@ -7,13 +7,13 @@ import org.springframework.stereotype.Service;
 
 import com.example.ulbispring.exception.UserAlreadyExistsException;
 import com.example.ulbispring.exception.UserNotFoundException;
-import com.example.ulbispring.repository.UseRepository;
+import com.example.ulbispring.repository.UserRepository;
 
 @Service
 public class UserService {
 
     @Autowired
-    private UseRepository useRepo;
+    private UserRepository useRepo;
 
     public UserEntity registration(UserEntity user) throws UserAlreadyExistsException {
         if (useRepo.findByUsername(user.getUsername()) != null) {
