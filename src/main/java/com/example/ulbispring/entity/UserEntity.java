@@ -1,9 +1,6 @@
 package com.example.ulbispring.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class UserEntity {
@@ -13,10 +10,7 @@ public class UserEntity {
     private String username;
     private String password;
 
-    public UserEntity(Long id, String username, String password) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
+    public UserEntity() {
     }
 
     public Long getId() {
